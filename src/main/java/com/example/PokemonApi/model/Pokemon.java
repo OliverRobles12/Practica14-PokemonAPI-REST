@@ -10,13 +10,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.URL;
 
-@Entity 
-@Data 
-@NoArgsConstructor 
-@AllArgsConstructor 
+import java.time.LocalDate;
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Pokemon {
-    
-    @Id 
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -46,5 +48,8 @@ public class Pokemon {
 
     @Email(message = "El formato de correo debe ser válido")
     private String email;
-    
+
+    @PastOrPresent(message = "La fecha de captura no puede ser una fecha futura")
+    private LocalDate fechaCaptura;
+
 }

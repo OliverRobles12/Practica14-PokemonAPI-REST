@@ -17,44 +17,44 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.PokemonApi.model.Pokemon;
 import com.example.PokemonApi.service.PokemonService;
 
-@RestController 
+@RestController
 @RequestMapping("/api/pokemones")
 public class PokemonController {
-    
+
     private final PokemonService pokemonService;
 
-    @Autowired 
-    public PokemonController(PokemonService pokemonService){
+    @Autowired
+    public PokemonController(PokemonService pokemonService) {
         this.pokemonService = pokemonService;
     }
 
-    @GetMapping 
-    public List<Pokemon> obtenerTodos(){
+    @GetMapping
+    public List<Pokemon> obtenerTodos() {
         return pokemonService.obtenerTodos();
     }
 
     @GetMapping("/{id}")
-    public Pokemon obtenerPorId(@PathVariable Long id){
+    public Pokemon obtenerPorId(@PathVariable Long id) {
         return pokemonService.obtenerPorId(id);
     }
 
-    @PostMapping 
-    public Pokemon crearPokemon(@Valid @RequestBody Pokemon pokemon){
+    @PostMapping
+    public Pokemon crearPokemon(@Valid @RequestBody Pokemon pokemon) {
         return pokemonService.crearPokemon(pokemon);
     }
 
     @PutMapping("/{id}")
-    public Pokemon actualizarCompleto(@Valid @PathVariable Long id, @RequestBody Pokemon pokemon){
+    public Pokemon actualizarCompleto(@PathVariable Long id, @Valid @RequestBody Pokemon pokemon) {
         return pokemonService.actualizarPokemonCompleto(id, pokemon);
     }
 
     @PatchMapping("/{id}")
-    public Pokemon actualizarParcial(@PathVariable Long id, @RequestBody Pokemon pokemon){
+    public Pokemon actualizarParcial(@PathVariable Long id, @RequestBody Pokemon pokemon) {
         return pokemonService.actualizaPokemonParcial(id, pokemon);
     }
 
     @DeleteMapping("/{id}")
-    public void eliminarPokemon(@PathVariable Long id){
+    public void eliminarPokemon(@PathVariable Long id) {
         pokemonService.eliminarPokemon(id);
     }
 }
